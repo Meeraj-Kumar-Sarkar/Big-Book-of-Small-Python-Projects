@@ -1,2 +1,3 @@
 # Removing the txt file created by calendermaker.py
 *.txt
+*.md
