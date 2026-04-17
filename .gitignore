@@ -1,3 +1,6 @@
 # Removing the txt file created by calendermaker.py
 *.txt
+# I did something with the .md file
 *.md
+# Some cache files within the folder taking space - just a cleanup
+__pycache__
