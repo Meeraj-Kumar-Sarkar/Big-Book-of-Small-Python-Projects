@@ -1,14 +1,17 @@
-import sys, time
+import sys, time, math
 import sevseg
 
-secondsleft = 320
+secondsleft = 10.0
 
 try:
     while True:
         print("\n" * 60)
-        hours = str(secondsleft // 3600)
-        minutes = str((secondsleft % 3600) // 60)
-        seconds = str(secondsleft % 60)
+
+        whole = int(secondsleft)
+        hours = str(whole // 3600).zfill(2)
+        minutes = str((whole % 3600) // 60).zfill(2)
+        seconds = str(whole % 60).zfill(2)
+        milli = str(int((secondsleft - whole) * 100))  # tenths
 
         hDigits = sevseg.getSevSrgStr(hours, 2)
         hTopRow, hMiddleRow, hButtomRow = hDigits.splitlines()
@@ -19,18 +22,37 @@ try:
         sDigits = sevseg.getSevSrgStr(seconds, 2)
         sTopRow, sMiddleRow, sButtomRow = sDigits.splitlines()
 
-        print(hTopRow + "     " + mTopRow + "     " + sTopRow)
-        print(hMiddleRow + "  *  " + mMiddleRow + "  *  " + sMiddleRow)
-        print(hButtomRow + "  *  " + mButtomRow + "  *  " + sButtomRow)
+        milDigits = sevseg.getSevSrgStr(milli, 2)
+        milTopRow, milMiddleRow, milButtomRow = milDigits.splitlines()
 
-        if secondsleft == 0:
+        print(hTopRow + "     " + mTopRow + "     " + sTopRow + "     " + milTopRow)
+        print(
+            hMiddleRow
+            + "  *  "
+            + mMiddleRow
+            + "  *  "
+            + sMiddleRow
+            + "     "
+            + milMiddleRow
+        )
+        print(
+            hButtomRow
+            + "  *  "
+            + mButtomRow
+            + "  *  "
+            + sButtomRow
+            + "  .  "
+            + milButtomRow
+        )
+
+        if secondsleft <= 0:
             print()
             print("    * * * * BOOM * * * *")
             break
         print()
         print("Press Ctrl-C to quit.")
 
-        time.sleep(1)
-        secondsleft -= 1
+        time.sleep(0.01)
+        secondsleft -= 0.01
 except KeyboardInterrupt:
     sys.exit()
