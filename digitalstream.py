@@ -2,7 +2,7 @@ import random, shutil, sys, time
 
 MIN_STREAM_LENGTH = 6
 MAX_STREAM_LENGTH = 14
-PAUSE = 0.01
+PAUSE = 0.035
 ALPHA = [
     "a",
     "b",
