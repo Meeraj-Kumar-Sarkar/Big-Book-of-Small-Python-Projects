@@ -12,10 +12,10 @@ except ImportError:
 WIDTH, HEIGHT = bext.size()
 WIDTH -= 1
 
-NUM_KELP = 2
+NUM_KELP = 12
 NUM_FISH = 10
-NUM_BUBBLERS = 1
-FRAMES_PER_SECOND = 4
+NUM_BUBBLERS = 3
+FRAMES_PER_SECOND = 24
 
 FISH_TYPES = [
     {"right": ["><>"], "left": ["<><"]},
@@ -167,6 +167,12 @@ def drawAquarium():
         for i, fishPart in enumerate(fishText):
             bext.fg(fish["colors"][i])
             print(fishPart, end="")
+
+    bext.fg("green")
+    for kelp in KELPS:
+        for i, kelpSegment in enumerate(kelp["segments"]):
+            bext.goto(kelp["x"], HEIGHT - 2 - i)
+            print(kelpSegment, end="")
 
     bext.fg("yellow")
     bext.goto(0, HEIGHT - 1)
