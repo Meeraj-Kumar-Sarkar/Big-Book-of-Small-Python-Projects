@@ -218,13 +218,13 @@ def main():
             kelp["segments"].append(random.choice(["(", ")"]))
         KELPS.append(kelp)
 
-        STEP = 1
-        while True:
-            simulateAquarium()
-            drawAquarium()
-            time.sleep(1 / FRAMES_PER_SECOND)
-            clearAquarium()
-            STEP += 1
+    STEP = 1
+    while True:
+        simulateAquarium()
+        drawAquarium()
+        time.sleep(1 / FRAMES_PER_SECOND)
+        clearAquarium()
+        STEP += 1
 
 
 if __name__ == "__main__":
